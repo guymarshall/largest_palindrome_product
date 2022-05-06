@@ -1,77 +1,24 @@
-# import java.util.ArrayList;
-# import java.util.Scanner;
+def reverse_string(input):
+    return input[::-1]
 
-# public class Main {
-#     static StringBuilder stringBuilderReverse = new StringBuilder();
-#     static StringBuilder stringBuilder = new StringBuilder();
+def is_palindrome(number):
+    number_as_string = str(number)
+    return number_as_string == str(number[::-1])
 
-#     public static String reverseString(String input) {
-#         return new StringBuilder(input).reverse().toString();
-#     }
-#     public static boolean isPalindrome(int number) {
-#         String numberAsString = String.valueOf(number);
+def main():
+    user_input = int(input("Enter a number of digits: "))
+    max_number = (10 ** user_input) - 1
+    largest_palindrome = 0
+    product = 1
 
-#         stringBuilder.setLength(0);
-#         stringBuilderReverse.setLength(0);
-#         stringBuilder.append(numberAsString);
-#         stringBuilderReverse.append(numberAsString);
-#         stringBuilderReverse.reverse();
+    for i in range(max_number):
+        for j in range(max_number):
+            product = i * j
+            if is_palindrome(product) and product > largest_palindrome:
+                largest_palindrome = product
+            
+        
+    print(f"Maximum palindrome product for {user_input} digits is {largest_palindrome}")
 
-#         return stringBuilderReverse.compareTo(stringBuilder) == 0;
-
-# //        String reversedNumberCharacters = reverseString(numberAsString);
-# //        return numberAsString.equals(reversedNumberCharacters);
-#     }
-#     public static void main(String[] args) {
-#         System.out.print("Enter a number of digits: ");
-#         Scanner scanner = new Scanner(System.in);
-#         int userInput = scanner.nextInt();
-#         int maxNumber = (int)Math.pow(10, userInput) - 1;
-#         int largestPalindrome = 0;
-#         int product = 1;
-
-#         for (int i = 1; i <= maxNumber; i++) {
-#             for (int j = 1; j <= maxNumber; j++) {
-#                 product = i * j;
-#                 if (isPalindrome(product) && product > largestPalindrome) {
-#                     largestPalindrome = product;
-#                 }
-#             }
-#         }
-
-#         System.out.printf("Maximum palindrome product for %d digits is %d.", userInput, largestPalindrome);
-#     }
-
-# //    public static void main(String[] args) {
-# //        System.out.print("Enter a number of digits: ");
-# //        Scanner scanner = new Scanner(System.in);
-# //        int userInput = scanner.nextInt();
-# //        int maxNumber = (int)Math.pow(10, userInput) - 1;
-# //
-# //        ArrayList<Integer> products = new ArrayList<Integer>();
-# //
-# //        for (int i = 0; i <= maxNumber; i++) {
-# //            for (int j = 0; j <= maxNumber; j++) {
-# //                products.add(i * j);
-# //            }
-# //        }
-# //
-# //        ArrayList<Integer> palindromes = new ArrayList<Integer>();
-# //
-# //        for (int product : products) {
-# //            if (isPalindrome(product)) {
-# //                palindromes.add(product);
-# //            }
-# //        }
-# //
-# //        int largestPalindrome = 0;
-# //
-# //        for (int palindrome : palindromes) {
-# //            if (palindrome > largestPalindrome) {
-# //                largestPalindrome = palindrome;
-# //            }
-# //        }
-# //
-# //        System.out.printf("Maximum palindrome product for %d digits is %d.", userInput, largestPalindrome);
-# //    }
-# }
+if __name__ == "__main__":
+    main()
